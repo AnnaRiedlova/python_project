@@ -1,0 +1,53 @@
+import random
+
+def sp(num):
+    if num == 1:
+        return 0
+    else:
+        return 1
+
+def cow_bull_game():
+    cow = 0
+    bull = 0
+    moje_cislo = str(input("Enter a four digit number you think of (not starting with 0): "))
+    print(oddelovac)
+    if moje_cislo.startswith("0") or not moje_cislo.isdigit():
+        print("Your number starts with 0 or what you´ve written is not number, please play again.")
+    elif len(moje_cislo) != 4:
+        print("Lenght of number chosen by you is not correct, please use 4 digits number and play again. ")
+        exit()
+    for i in moje_cislo:
+        if i in random_cislo:
+            cow += 1
+    for l in range(0, 4):
+        if random_cislo[l] == moje_cislo[l]:
+            bull += 1
+            if bull == 4:
+                print("You won!!!")
+                exit()
+
+    def sp(cow):
+        return 0 if cow == 1 else 1
+    def spb(bull):
+        return 0 if bull == 1 else 1
+
+    cow_i = ["cow", "cows"]
+    bull_i = ["bull", "bulls"]
+    print(f"{moje_cislo} - {cow} {cow_i[sp(cow)]} and {bull} {bull_i[spb(bull)]}")
+    return cow
+
+
+if __name__ == '__main__':
+    oddelovac="-"*30
+    print("Hi there, ",'\n',oddelovac,'\n'"I've generated a random 4 digit number for you.",'\n'"Let's play a bulls and cows game.",'\n',oddelovac)
+    # random_cislo= str(random.randrange(1000,9999))
+    random_cislo="1234"
+    count = 0
+    attempts = int(input("How many attempts you want?  "))
+    print(oddelovac)
+    while count < attempts:
+        count += 1
+        cow_bull_game()
+    else:
+        print("You´re out of attempts. Play again!!! ")
+        exit()
