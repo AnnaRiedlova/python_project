@@ -8,7 +8,7 @@ def main():
     random_cislo = pick_number()
     pokusy=0
     while True:
-        moje_cislo = input("Enter a four digit number you think of (not starting with 0): ")
+        moje_cislo = input("Enter a four digit number you think of (not starting with 0). If you do not know how to continue - go for SOS: ")
         if moje_cislo=="SOS":
             print(f"Shame you gave up. Number is {random_cislo}")
             break
@@ -20,6 +20,7 @@ def main():
         word_bull=spelling_bulls(bull)
         if bull == 4:
             print(f"You won and you need {pokusy} guesses. Good job!")
+            break
         else:
             print(f"{moje_cislo} - {cow} {word_cow} and {bull} {word_bull}. Total number of guesses : {pokusy}.")
             continue
