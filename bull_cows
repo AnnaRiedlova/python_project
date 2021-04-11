@@ -1,0 +1,83 @@
+import random
+
+def main():
+    oddelovac = "-" * 30
+    print("Hi there, ", '\n', oddelovac, '\n'"I've generated a random 4 digit number for you.",
+    '\n'"Let's play a bulls and cows game.", '\n', oddelovac)
+    print(oddelovac)
+    random_cislo = pick_number()
+    pokusy=0
+    while True:
+        moje_cislo = input("Enter a four digit number you think of (not starting with 0): ")
+        if moje_cislo=="SOS":
+            print(f"Shame you gave up. Number is {random_cislo}")
+            break
+        pokusy +=1
+        if number_check(moje_cislo):
+            continue
+        bull,cow=count_bulls_cows(moje_cislo,random_cislo)
+        word_cow=spelling_cow(cow)
+        word_bull=spelling_bulls(bull)
+        if bull == 4:
+            print(f"You won and you need {pokusy} guesses. Good job!")
+        else:
+            print(f"{moje_cislo} - {cow} {word_cow} and {bull} {word_bull}. Total number of guesses : {pokusy}.")
+            continue
+
+
+def pick_number():
+    a = 0
+    while a == 0:
+        a, b, c, d = random.sample(range(10), 4)
+    return str(1000 * a + 100 * b + 10 * c + d)
+
+
+def number_check(moje_cislo):
+    # test for input quality- we are going for 4digit number, not starting by 0
+    # moje_cislo = str(input("Enter a four digit number you think of (not starting with 0): "))
+    oddelovac = "-" * 30
+    print(oddelovac)
+    result = False
+    if moje_cislo.startswith("0"):
+        print("Your number starts with 0, please play again.")
+        result = True
+    elif not moje_cislo.isdigit():
+        print("what you´ve written is not number, please play again.")
+        result = True
+    elif len(moje_cislo) != 4:
+        print("Lenght of number chosen by you is not correct, please use 4 digits number and play again. ")
+        result = True
+    elif len(set(moje_cislo))!=4:
+        print("\nAt least one of you number is repeating, please play again.")
+        result = True
+    return result
+
+
+
+def count_bulls_cows(moje_cislo,random_cislo):
+    bull=0
+    cow=0
+
+    for i in range(0,4):
+        if moje_cislo[i] == random_cislo[i]:
+            bull += 1
+        elif moje_cislo[i] in random_cislo:
+            cow += 1
+
+    return bull, cow
+
+
+def spelling_cow(cow):
+    if cow == 1:
+        return "cow"
+    else:
+        return "cows"
+
+
+def spelling_bulls(bull):
+    if bull == 1:
+        return "bull"
+    else:
+        return "bulls"
+
+main()
